@@ -11,7 +11,7 @@ Team(s) -> Week(s) -> Score(s)
 
 Technology:
 
-server: node.js (express)
+server: node.js (express library) deployed to heroku
 
 client: ???
 
@@ -24,5 +24,26 @@ http://coenraets.org/blog/2012/10/creating-a-rest-api-using-node-js-express-and-
 http://coenraets.org/blog/2012/10/nodecellar-sample-application-with-backbone-js-twitter-bootstrap-node-js-express-and-mongodb/
 versione PHP:
 http://coenraets.org/blog/2012/05/single-page-crud-application-with-backbone-js-and-twitter-bootstrap/
-pushing to heroku:
-https://github.com/ccoenraets/nodecellar
+
+===================
+To run the application on your own Heroku account:
+
+Install the Heroku Toolbelt
+Sign up for a Heroku account
+Login to Heroku from the heroku CLI:
+
+$ heroku login
+Create a new app on Heroku:
+
+$ heroku create
+Add the MongoLab Heroku Add-on
+
+$ heroku addons:add mongolab
+Upload the app to Heroku:
+
+$ git push heroku master
+Open the app in your browser:
+
+$ heroku open
+
+Or contact me for the main heroku deploy instance

@@ -46,4 +46,6 @@ Open the app in your browser:
 
 $ heroku open
 
-Or contact me for the main heroku deploy instance
+--> http://motivational.herokuapp.com/teams
+
+(contact me for the main heroku deploy instance)

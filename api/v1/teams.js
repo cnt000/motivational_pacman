@@ -58,7 +58,7 @@ exports.testData = function(req, res) {
 			if (err) {
 				res.send({'error':'An error has occurred teams'});
 			} else {
-				res.send({'ok':'call /findAll'});
+				res.send({'ok':'call /teams'});
 			}
 		});
 	});

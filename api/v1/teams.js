@@ -51,12 +51,84 @@ exports.findByName = function(req, res) {
 	});
 };
 
+//=======CRUD team==========================
+
+exports.addTeam = function(req, res) {
+	var team = req.body;
+	console.log('Adding team: ' + JSON.stringify(team));
+	db.collection('teams', function(err, collection) {
+		collection.insert(team, {safe:true}, function(err, result) {
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} else {
+				console.log('Success: ' + JSON.stringify(result[0]));
+				res.send(result[0]);
+			}
+		});
+	});
+};
+
+exports.updateTeam = function(req, res) {
+	var id = req.params.id;
+	var team = req.body;
+	//delete team._id;
+	console.log('Updating team: ' + id);
+	db.collection('teams', function(err, collection) {
+		collection.update({'_id':new BSON.ObjectID(id)}, team, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error updating team: ' + err);
+				res.send({'error':'An error has occurred'});
+			} else {
+				console.log('' + result + ' document(s) updated');
+				res.send(team);
+			}
+		});
+	});
+};
+ 
+exports.deleteTeam = function(req, res) {
+	var id = req.params.id;
+	console.log('Deleting team: ' + id);
+	db.collection('teams', function(err, collection) {
+		collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
+			if (err) {
+				res.send({'error':'An error has occurred - ' + err});
+			} else {
+				console.log('' + result + ' document(s) deleted');
+				res.send(req.body);
+			}
+		});
+	});
+};
+
+//=======CRUD score==========================
+
+
+exports.pushScore = function(req, res) {
+	var id = req.params.id;
+	var score = req.body;
+
+	db.collection('teams', function(err, collection) {
+		collection.update({'_id':new BSON.ObjectID(id)}, { '$push': { 'scores': score } }, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error adding score: ' + err);
+				res.send({'error':'An error has occurred'});
+			} else {
+				console.log('' + result + ' score added');
+				res.send(score);
+			}
+		});
+	});
+};
+
+//=======Insert data test==========================
+
 exports.testData = function(req, res) {
 
 	db.collection('teams', function(err, collection) {
 		collection.insert(testDataFile, {safe:true}, function(err, result) {
 			if (err) {
-				res.send({'error':'An error has occurred teams'});
+				res.send({'error':'Already inserted'});
 			} else {
 				res.send({'ok':'call /teams'});
 			}

@@ -21,4 +21,10 @@ app.get('/teams', model.findAll);
 app.get('/team/:id', model.findById);
 app.get('/team/name/:name', model.findByName);
 
+app.post('/team', model.addTeam);
+app.put('/team/:id', model.updateTeam);
+app.delete('/team/:id', model.deleteTeam);
+
+app.put('/score/:id', model.pushScore);
+
 app.get('/testData', model.testData);

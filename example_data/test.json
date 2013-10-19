@@ -1,41 +1,60 @@
 [{
     "name": "AlfaBeta",
     "fromDate": "02/07/2013",
-    "weeks": [
+    "scores": [
         {
-            "from": "02/07/2013",
-            "tom": "09/07/2013",
-            "records": [
-                {
-                    "date": "03/07/2013",
-                    "user": "garganoe"
-                },
-                {
-                    "date": "05/07/2013",
-                    "user": "garganoe"
-                }
-            ]
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "03/07/2013",
+            "user": "garganoe"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "04/07/2013",
+            "user": "garganoe"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "05/07/2013",
+            "user": "garganoe"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "06/07/2013",
+            "user": "garganoe"
         }
     ]
 },
 {
     "name": "S3",
     "fromDate": "02/01/2013",
-    "weeks": [
+    "scores": [
         {
-            "from": "02/07/2013",
-            "tom": "09/07/2013",
-            "records": [
-                {
-                    "date": "03/07/2013",
-                    "user": "nardaa"
-                },
-                {
-                    "date": "05/07/2013",
-                    "user": "nardaa"
-                }
-            ]
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "03/07/2013",
+            "user": "nardaa"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "04/07/2013",
+            "user": "nardaa"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "05/07/2013",
+            "user": "canduccis"
+        },
+        {
+            "week_from": "02/07/2013",
+            "week_to": "09/07/2013",
+            "date": "06/07/2013",
+            "user": "magnim"
         }
     ]
-}
-]
+}]

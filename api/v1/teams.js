@@ -52,20 +52,7 @@ exports.findByName = function(req, res) {
 };
 
 // exports.getResults = function(req, res) {
-// 	 var team = req.params.team;
-// 	 var week_from = req.params.week_from;
 
-// 	db.collection('teams', function(err, collection) {
-// 	 	collection.find({'name': new RegExp(name, "i")}).toArray(function(err, items) {
-// 	 		res.send(items);
-// 	 	});
-// 		collection.count('scores.week_from', function(err, count) {
-//             res.send(count);
-//          });
-// 		collection.distinct('scores.week_from', function(err, items) {
-//          res.send(items);
-//       });
-// 	});
 // };
 
 //=======CRUD team==========================
@@ -118,25 +105,32 @@ exports.deleteTeam = function(req, res) {
 	});
 };
 
-//=======CRUD score==========================
+//=======push score==========================
 
 
-// exports.pushScore = function(req, res) {
-// 	var id = req.params.id;
-// 	var score = req.body;
+exports.pushScore = function(req, res) {
+	var id = req.params.id;
+	var week_from = req.params.week_from.replace(/_/g,"/");
+	var inserted = req.body;
 
-// 	db.collection('teams', function(err, collection) {
-// 		collection.update({'_id':new BSON.ObjectID(id)}, { '$push': { 'scores': score } }, {safe:true}, function(err, result) {
-// 			if (err) {
-// 				console.log('Error adding score: ' + err);
-// 				res.send({'error':'An error has occurred'});
-// 			} else {
-// 				console.log('' + result + ' score added');
-// 				res.send(score);
-// 			}
-// 		});
-// 	});
-// };
+	db.collection('teams', function(err, collection) {
+		collection.update({
+							"_id": new BSON.ObjectID(id), 
+                        	"scores.week_from": week_from
+                         },
+                         { $inc: { "scores.$.points": 1 }, $push: { "scores.$.inserted": inserted } },
+                         {safe:true}, function(err, result) {
+										if (err) {
+											console.log('Error updating team: ' + err);
+											res.send({'error':'An error has occurred'});
+										} else {
+											console.log('' + result + ' document(s) updated');
+											res.send(inserted);
+										}
+						});
+
+	});
+};
 
 //=======Insert data test==========================
 

@@ -40,15 +40,26 @@ window.WeekView = Backbone.View.extend({
     },
 
     events: {
-        "click .glyphicon-star-empty"   : "add"
+        "click .glyphicon-star-empty:first"   : "add"
     },
 
     add: function (event) {
+         var $target = $(event.currentTarget),
+             $parent = $target.parent(),
+             $points = $parent.find(".points");
+
+
+        $target.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
+        $points.text(+$points.text()+1);
+
+        console.log($parent.data("mongoid"));
+        console.log($parent.data("weekfrom"));
         this.addPoint(event);
     },
 
     addPoint: function(event) {
         var self = this;
+       
 
     }
 

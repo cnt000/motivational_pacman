@@ -121,11 +121,9 @@ curl -i -X PUT -H 'Content-Type: application/json' -d '{
 
 =========================================================
 
-Push score for team 5262ddb5832370d62c000002:
+Push score for team 52640b4af7e292e047000001:
 curl -i -X PUT -H 'Content-Type: application/json' -d '{
-            "week_from": "02/09/2013",
-            "week_to": "09/09/2013",
-            "date": "03/09/2013",
-            "user": "giannone"
-}' http://localhost:3000/score/5262ddb5832370d62c000002
+            "date": "10/07/2013",
+            "user": "zione"
+}' http://localhost:3000/score/52640b4af7e292e047000002/09_07_2013
 

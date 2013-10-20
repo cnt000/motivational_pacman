@@ -5,8 +5,8 @@ _.each(scores, function(score){
 
 	<div class="jumbotron">
 		<div><%= name %> <%= insDate %></div>
-
-		<p>from <%= score.week_from %></p><p> Week Points: <%= score.points %></p>
+		<div data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
+		<p>from <%= score.week_from %></p><p> Week Points: <span class="points"><%= score.points %></span></p>
 		<% for(var i=0;i<score.points;i++) { %>
 			<span class="glyphicon glyphicon-star"></span>
 
@@ -15,7 +15,7 @@ _.each(scores, function(score){
 			<span class="glyphicon glyphicon-star-empty"></span>
 
 		<% } %>
-		
+		</div>
 	</div>
 <% 
 });

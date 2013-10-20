@@ -51,6 +51,23 @@ exports.findByName = function(req, res) {
 	});
 };
 
+// exports.getResults = function(req, res) {
+// 	 var team = req.params.team;
+// 	 var week_from = req.params.week_from;
+
+// 	db.collection('teams', function(err, collection) {
+// 	 	collection.find({'name': new RegExp(name, "i")}).toArray(function(err, items) {
+// 	 		res.send(items);
+// 	 	});
+// 		collection.count('scores.week_from', function(err, count) {
+//             res.send(count);
+//          });
+// 		collection.distinct('scores.week_from', function(err, items) {
+//          res.send(items);
+//       });
+// 	});
+// };
+
 //=======CRUD team==========================
 
 exports.addTeam = function(req, res) {

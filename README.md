@@ -14,7 +14,8 @@ Technology:
 server: 
 node.js (express) + mongodb [deployed to heroku]
 
-client: ???
+client: bootstrap 3
+http://getbootstrap.com/components/
 
 ===================
 

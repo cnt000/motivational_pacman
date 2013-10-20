@@ -1,5 +1,6 @@
 var express = require('express'),
     http = require('http'),
+    path = require('path'),
     model = require('./api/v1/teams');
 
 var app = express();
@@ -7,7 +8,8 @@ var app = express();
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.use(express.logger('dev'));
-    app.use(express.bodyParser())
+    app.use(express.bodyParser());
+    app.use(express.static(path.join(__dirname, 'public')));
 });
 
 var server = http.createServer(app);
@@ -26,5 +28,7 @@ app.put('/team/:id', model.updateTeam);
 app.delete('/team/:id', model.deleteTeam);
 
 app.put('/score/:id', model.pushScore);
+
+//app.get('/results', model.getResults);
 
 app.get('/testData', model.testData);

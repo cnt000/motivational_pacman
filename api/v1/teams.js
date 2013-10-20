@@ -121,22 +121,22 @@ exports.deleteTeam = function(req, res) {
 //=======CRUD score==========================
 
 
-exports.pushScore = function(req, res) {
-	var id = req.params.id;
-	var score = req.body;
+// exports.pushScore = function(req, res) {
+// 	var id = req.params.id;
+// 	var score = req.body;
 
-	db.collection('teams', function(err, collection) {
-		collection.update({'_id':new BSON.ObjectID(id)}, { '$push': { 'scores': score } }, {safe:true}, function(err, result) {
-			if (err) {
-				console.log('Error adding score: ' + err);
-				res.send({'error':'An error has occurred'});
-			} else {
-				console.log('' + result + ' score added');
-				res.send(score);
-			}
-		});
-	});
-};
+// 	db.collection('teams', function(err, collection) {
+// 		collection.update({'_id':new BSON.ObjectID(id)}, { '$push': { 'scores': score } }, {safe:true}, function(err, result) {
+// 			if (err) {
+// 				console.log('Error adding score: ' + err);
+// 				res.send({'error':'An error has occurred'});
+// 			} else {
+// 				console.log('' + result + ' score added');
+// 				res.send(score);
+// 			}
+// 		});
+// 	});
+// };
 
 //=======Insert data test==========================
 

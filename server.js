@@ -27,7 +27,7 @@ app.post('/team', model.addTeam);
 app.put('/team/:id', model.updateTeam);
 app.delete('/team/:id', model.deleteTeam);
 
-app.put('/score/:id', model.pushScore);
+//app.put('/score/:id', model.pushScore);
 
 //app.get('/results', model.getResults);
 

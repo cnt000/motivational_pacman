@@ -1,14 +1,22 @@
+
 <% 
 _.each(scores, function(score){ 
 %>
+
 	<div class="jumbotron">
-		<div><%= name %> <%= fromDate %></div>
+		<div><%= name %> <%= insDate %></div>
 
-		from <%= score.week_from %> to <%= score.week_to %>
+		<p>from <%= score.week_from %></p><p> Week Points: <%= score.points %></p>
+		<% for(var i=0;i<score.points;i++) { %>
+			<span class="glyphicon glyphicon-star"></span>
 
-		<span title="<%= score.user %> <%= score.date %>" class="glyphicon glyphicon-star"></span>
+		<% }
+		for(var i=score.points;i<10;i++) { %>
+			<span class="glyphicon glyphicon-star-empty"></span>
+
+		<% } %>
+		
 	</div>
 <% 
-});    
+});
 %>
-

@@ -40,7 +40,7 @@ window.WeekView = Backbone.View.extend({
     },
 
     events: {
-        "click .glyphicon-star-empty:first"   : "add"
+        "click .clickable:first"   : "add"
     },
 
     add: function (event) {
@@ -49,18 +49,32 @@ window.WeekView = Backbone.View.extend({
              $points = $parent.find(".points");
 
 
-        $target.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
         $points.text(+$points.text()+1);
 
         console.log($parent.data("mongoid"));
         console.log($parent.data("weekfrom"));
-        this.addPoint(event);
-    },
 
-    addPoint: function(event) {
-        var self = this;
-       
+        var score = new Score({"id":$parent.data("mongoid"), "week_from": $parent.data("weekfrom")});
+        score.toJSON();
 
+        score.save({"user":"test", "date": "01/01/2001"}, {
+            wait:true,
+            success:function(model, response) {
+                $target.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
+                $parent.find(" .clickable").removeClass("clickable").next().addClass("clickable");
+                //var points = +$("[data-mongoid="+$parent.data("mongoid")+"] .points").text();
+                //$("[data-mongoid="+$parent.data("mongoid")+"] .points").text(points++);
+                console.log('Successfully saved!');
+            },
+            error: function(model, error) {
+                console.log(model.toJSON());
+                console.log(error.responseText);
+            }
+        });
+
+
+
+        //this.addPoint(event);
     }
 
 });

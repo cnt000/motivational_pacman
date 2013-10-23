@@ -25,7 +25,7 @@ var AppRouter = Backbone.Router.extend({
         var p = page ? parseInt(page, 10) : 1;
         var teamsList = new TeamsCollection();
         teamsList.fetch({success: function(){
-            $("#content").html(new ResultsView({model: teamsList, page: p}).el);
+            $("#content").html(new ResultsPageView({model: teamsList, page: p}).el);
         }});
         this.headerView.selectMenuItem('results-menu');
     },
@@ -58,7 +58,7 @@ var AppRouter = Backbone.Router.extend({
 
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'AboutView', 'WeekView', 'TeamView']
+utils.loadTemplate(['HomeView', 'HeaderView', 'AboutView', 'TeamView', 'ResultsView']
                     , function() {
                                     app = new AppRouter();
                                     Backbone.history.start();

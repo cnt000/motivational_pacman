@@ -1,4 +1,4 @@
-window.ResultsView = Backbone.View.extend({
+window.ResultsPageView = Backbone.View.extend({
 
     initialize: function () {
         this.render();
@@ -13,7 +13,7 @@ window.ResultsView = Backbone.View.extend({
         $(this.el).html('<h1>Results</h1><div class="content"></ul>');
 
         for (var i = 0; i < len; i++) {
-            $('.content', this.el).append(new WeekView({model: teams[i]}).render().el);
+            $('.content', this.el).append(new ResultsView({model: teams[i]}).render().el);
         }
 
         // $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
@@ -23,7 +23,7 @@ window.ResultsView = Backbone.View.extend({
 
 });
 
-window.WeekView = Backbone.View.extend({
+window.ResultsView = Backbone.View.extend({
 
     tagName: "div",
 
@@ -62,8 +62,6 @@ window.WeekView = Backbone.View.extend({
             success:function(model, response) {
                 $target.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
                 $parent.find(" .clickable").removeClass("clickable").next().addClass("clickable");
-                //var points = +$("[data-mongoid="+$parent.data("mongoid")+"] .points").text();
-                //$("[data-mongoid="+$parent.data("mongoid")+"] .points").text(points++);
                 console.log('Successfully saved!');
             },
             error: function(model, error) {

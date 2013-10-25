@@ -21,7 +21,7 @@ window.ScoresCollection = Backbone.Collection.extend({
 
     initialize: function(options) {
         this.id = options.id;
-        this.week_from = options.city;
+        this.week_from = options.week_from;
     },
     url: function() {
         return "/scores/"+this.id+"/"+this.week_from;

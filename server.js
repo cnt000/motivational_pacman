@@ -28,6 +28,7 @@ app.put('/team/:id', model.updateTeam);
 app.delete('/team/:id', model.deleteTeam);
 
 app.put('/score/:id/:week_from', model.pushScore);
+app.put('/week/:id/:week_from', model.pushWeek);
 
 //app.get('/results', model.getResults);
 

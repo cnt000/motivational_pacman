@@ -11,17 +11,6 @@ window.Team = Backbone.Model.extend({
             return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a name"};
         };
 
-        // this.validators.subtitle = function (value) {
-        //  return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a subtitle"};
-        // };
-
-        // this.validators.description = function (value) {
-        //  return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a description"};
-        // };
-
-        // this.validators.picture = function (value) {
-        //  return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a picture"};
-        // };
     },
 
     validateItem: function (key) {

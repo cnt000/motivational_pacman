@@ -4,9 +4,12 @@ var AppRouter = Backbone.Router.extend({
         ""              : "home",
         "teams/add"     : "teamAdd",
         "teams/:id"     : "teamDetails",
-        "teams"     : "teamList",
-        "about"         : "about",
-        "results"       : "results"
+        "teams"         : "teamList",
+
+        "weeks/add"      : "weekAdd",
+
+        "results"       : "results",
+        "about"         : "about"
     },
 
     initialize: function () {
@@ -41,7 +44,7 @@ var AppRouter = Backbone.Router.extend({
     teamAdd: function () {
         var team = new Team();
         $('#content').html(new TeamView({model: team}).el);
-        this.headerView.selectMenuItem('teams-menu');
+        this.headerView.selectMenuItem('teamsAdd');
     },
 
     teamDetails: function (id) {
@@ -56,9 +59,17 @@ var AppRouter = Backbone.Router.extend({
         var teamList = new TeamListView();
     },
 
+    weekAdd: function () {
+        var week = new Week();
+        $('#content').html(new WeekView({model: week}).el);
+        this.headerView.selectMenuItem('weeksAdd');
+    }
+
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'AboutView', 'TeamView', 'ResultsView']
+utils.loadTemplate(['HomeView', 'HeaderView', 
+                    'AboutView', 'TeamView',
+                    'ResultsView']
                     , function() {
                                     app = new AppRouter();
                                     Backbone.history.start();

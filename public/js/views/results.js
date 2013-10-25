@@ -4,6 +4,43 @@ window.ResultsPageView = Backbone.View.extend({
         this.render();
     },
 
+
+    events: {
+        "click .add"   : "addWeek"
+    },
+
+    addWeek: function (event) {
+         var $target = $("#newWeek"),
+             $teamId = $target.find("#teamId"),
+             $week_from = $target.find("#week_from"),
+             teamId = $teamId.val(),
+             week_from = $week_from.val().replace(/\//g, "_");
+
+
+        console.log($teamId.val());
+        console.log($week_from.val());
+
+        var week = new Week({"id": teamId, "week_from": week_from});
+        week.toJSON();
+
+        week.save({}, {
+            wait:true,
+            success:function(model, response) {
+                console.log('Successfully saved!');
+            },
+            error: function(model, error) {
+                console.log(model.toJSON());
+                console.log(error.responseText);
+            }
+        });
+
+        app.navigate('results', false);
+
+        
+
+        //this.addPoint(event);
+    },
+
     render: function () {
         var teams = this.model.models;
         var len = teams.length;
@@ -40,7 +77,7 @@ window.ResultsView = Backbone.View.extend({
     },
 
     events: {
-        "click .clickable:first"   : "add"
+        "click .clickable"   : "add"
     },
 
     add: function (event) {

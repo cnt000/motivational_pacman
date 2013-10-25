@@ -57,6 +57,7 @@ window.TeamView = Backbone.View.extend({
                 utils.showAlert('Error', 'An error occurred while trying to delete this item', 'alert-error');
             }
         });
+
     },
 
     deleteTeam: function () {

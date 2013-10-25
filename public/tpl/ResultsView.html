@@ -1,21 +1,43 @@
+<div id="container">
+    <div class="row-fluid">
 
-<% 
-_.each(scores, function(score){ 
-	%>
+        <form class="form-horizontal span12" id="newWeek">
+            <div class="row">
+                <div class="span8">
+                    <div class="control-group">
+                        <div>Inserisci settimana per team <%= name %></div>
+                        <input id="teamId" name="id" type="hidden" value="<%= _id %>" />
+                        <label for="week_from" class="control-label">Week:</label>
+                        <input type="text" id="week_from" name="week_from" />
+                        <span class="help-inline"></span>
+                        <div class="form-actions">
+                            <a href="#" class="btn btn-primary add">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
-	<div class="jumbotron">
-		<div><%= name %> <%= insDate %></div>
-		<div class="stars" id="id_<%= _id %>_<%= score.week_from.replace(/\//g,"_") %>" data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
-		<p>from <%= score.week_from %></p><p> Week Points: <span class="points"><%= score.points %></span></p>
-			<% for(var i=0;i<score.points;i++) { %>
-			<span class="glyphicon glyphicon-star"></span>
+    <% 
+    _.each(scores, function(score){ 
+        %>
 
-			<% }
-			for(var i=score.points;i<10;i++) { %>
-			<span class="glyphicon glyphicon-star-empty <%= (i===score.points) ? "clickable" : "" %>"></span>
-			<% } %>
-		</div>
-	</div>
-	<% 
-	});
-%>
+        <div class="jumbotron">
+            <div><%= name %> <%= insDate %></div>
+            <div class="stars" id="id_<%= _id %>_<%= score.week_from.replace(/\//g,"_") %>" data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
+                <p>from <%= score.week_from %></p><p> Week Points: <span class="points"><%= score.points %></span></p>
+                <% for(var i=0;i<score.points;i++) { %>
+                <span class="glyphicon glyphicon-star"></span>
+
+                <% }
+                for(var i=score.points;i<10;i++) { %>
+                <span class="glyphicon glyphicon-star-empty <%= (i===score.points) ? "clickable" : "" %>"></span>
+                <% } %>
+            </div>
+        </div>
+        <% 
+        });
+        %>
+
+    </div>

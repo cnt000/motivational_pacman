@@ -10,9 +10,10 @@ window.ResultsPageView = Backbone.View.extend({
     },
 
     addWeek: function (event) {
-         var $target = $("#newWeek"),
-             $teamId = $target.find("#teamId"),
-             $week_from = $target.find("#week_from"),
+        debugger;
+         var $form = $(event.currentTarget).closest("form"),
+             $teamId = $form.find(".teamId"),
+             $week_from = $form.find(".week_from"),
              teamId = $teamId.val(),
              week_from = $week_from.val().replace(/\//g, "_");
 

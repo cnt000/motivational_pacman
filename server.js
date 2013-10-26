@@ -20,8 +20,8 @@ server.listen(app.get('port'), function () {
 });
 
 app.get('/teams', model.findAll);
+app.get('/teams/name/:name', model.findByName);
 app.get('/team/:id', model.findById);
-app.get('/team/name/:name', model.findByName);
 
 app.post('/team', model.addTeam);
 app.put('/team/:id', model.updateTeam);

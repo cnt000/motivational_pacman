@@ -18,13 +18,20 @@
             </div>
         </form>
     </div>
+    <div class="row-fluid status-bar">
+        <div class="span12">
+            <div class="alert alert-success" style="display: none">
+                <b>Success!</b> Week saved successfully
+            </div>
+        </div>
+    </div>
 
     <% 
     _.each(scores, function(score){ 
         %>
 
         <div class="jumbotron">
-            <div><%= name %> <%= insDate %></div>
+            <div><a href="#results/<%= name %>"><%= name %></a> <%= insDate %></div>
             <div class="stars" id="id_<%= _id %>_<%= score.week_from.replace(/\//g,"_") %>" data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
                 <p>from <%= score.week_from %></p><p> Week Points: <span class="points"><%= score.points %></span></p>
                 <% for(var i=0;i<score.points;i++) { %>
@@ -32,7 +39,7 @@
 
                 <% }
                 for(var i=score.points;i<10;i++) { %>
-                <span class="glyphicon glyphicon-star-empty <%= (i===score.points) ? "clickable" : "" %>"></span>
+                <span class="glyphicon glyphicon-star-empty<%= (i===score.points) ? " clickable" : "" %><%= (i===9) ? " last" : "" %>"></span>
                 <% } %>
             </div>
         </div>

@@ -46,6 +46,13 @@ window.TeamsCollection = Backbone.Collection.extend({
 
     model: Team,
 
-    url: "/teams"
+    initialize: function(options) {
+        this.options = (typeof(options)=="undefined") ? { "teamName": "" } : options;
+    },
+
+    url: function() {
+        var url = "/teams"+ ((this.options.teamName!=="") ? ("/name/"+this.options.teamName) : "");
+        return url;
+    }
 
 });

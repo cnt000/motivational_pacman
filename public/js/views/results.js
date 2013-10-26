@@ -4,13 +4,11 @@ window.ResultsPageView = Backbone.View.extend({
         this.render();
     },
 
-
     events: {
         "click .add"   : "addWeek"
     },
 
     addWeek: function (event) {
-        debugger;
          var $form = $(event.currentTarget).closest("form"),
              $teamId = $form.find(".teamId"),
              $week_from = $form.find(".week_from"),
@@ -28,18 +26,15 @@ window.ResultsPageView = Backbone.View.extend({
             wait:true,
             success:function(model, response) {
                 console.log('Successfully saved!');
+                app.navigate("/results", true);
             },
             error: function(model, error) {
-                console.log(model.toJSON());
                 console.log(error.responseText);
             }
         });
 
-        app.navigate('results', false);
+        return true;
 
-        
-
-        //this.addPoint(event);
     },
 
     render: function () {
@@ -48,7 +43,15 @@ window.ResultsPageView = Backbone.View.extend({
         // var startPos = (this.options.page - 1) * 8;
         // var endPos = Math.min(startPos + 8, len);
 
-        $(this.el).html('<h1>Results</h1><div class="content"></ul>');
+        $(this.el).html('<h1>Results - <a href="#results">All</a></h1><div class="content"></div>');
+
+
+        if(teams.length === 0) {
+            $('.content', this.el).append('<div class="jumbotron">\
+                                    <div>Nessun team inserito</div>\
+                                </div>');
+             
+        }
 
         for (var i = 0; i < len; i++) {
             $('.content', this.el).append(new ResultsView({model: teams[i]}).render().el);
@@ -98,6 +101,9 @@ window.ResultsView = Backbone.View.extend({
         score.save({"user":"test", "date": "01/01/2001"}, {
             wait:true,
             success:function(model, response) {
+                if($target.hasClass("last")) {
+                    $target.after($target.clone());
+                }
                 $target.removeClass("glyphicon-star-empty").addClass("glyphicon-star");
                 $parent.find(" .clickable").removeClass("clickable").next().addClass("clickable");
                 console.log('Successfully saved!');

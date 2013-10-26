@@ -1,0 +1,43 @@
+.pacman {
+	background: url('img/original-pacman-sprite.png') no-repeat;
+}
+
+.bigpoint {
+	background-position: -4px -184px;
+}
+.pacmansmall_left {
+	background-position: -4px -4px;
+}
+.pacmansmall_right {
+	background-position: -4px -24px;
+}
+.pacmansmall_up {
+	background-position: -4px -44px;
+}
+.pacmansmall_down {
+	background-position: -4px -64px;
+}
+.ghost_red {
+	background-position: -4px -84px;
+}
+.ghost_pink {
+	background-position: -4px -104px;
+}
+.ghost_cyan {
+	background-position: -4px -124px;
+}
+.ghost_yellow {
+	background-position: -4px -144px;
+}
+.cherry {
+	background-position: -174px -164px;
+}
+.strawberry {
+	background-position: -174px -184px;
+}
+.orange {
+	background-position: -174px -204px;
+}
+.apple {
+	background-position: -174px -224px;
+}

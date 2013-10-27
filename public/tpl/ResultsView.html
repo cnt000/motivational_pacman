@@ -1,16 +1,16 @@
 <div id="container">
     <div class="row-fluid">
 
-        <form class="form-horizontal span12" class="newWeek">
+        <form class="form-horizontal span12 addWeekForm" class="newWeek">
             <div class="row">
                 <div class="span8">
                     <div class="control-group">
-                        <div>Inserisci settimana per team <%= name %></div>
+                        <div class="insWeekText">Inserisci settimana per team <%= name %></div>
                         <input class="teamId" name="id" type="hidden" value="<%= _id %>" />
                         <label for="week_from" class="control-label">Week:</label>
                         <input type="text" class="week_from" name="week_from" />
                         <span class="help-inline"></span>
-                        <div class="form-actions">
+                        <div class="form-actions addWeekButton">
                             <a href="#" class="btn btn-primary add">Add</a>
                         </div>
                     </div>

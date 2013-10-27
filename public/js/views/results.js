@@ -4,38 +4,33 @@ window.ResultsPageView = Backbone.View.extend({
         this.render();
     },
 
-    events: {
-        "click .add"   : "addWeek"
-    },
+    // events: {
+    //     "click .add"   : "addWeek"
+    // },
 
-    addWeek: function (event) {
-         var $form = $(event.currentTarget).closest("form"),
-             $teamId = $form.find(".teamId"),
-             $week_from = $form.find(".week_from"),
-             teamId = $teamId.val(),
-             week_from = $week_from.val().replace(/\//g, "_");
+    // addWeek: function (event) {
+    //      var $form = $(event.currentTarget).closest("form"),
+    //          $teamId = $form.find(".teamId"),
+    //          $week_from = $form.find(".week_from"),
+    //          teamId = $teamId.val(),
+    //          week_from = $week_from.val().replace(/\//g, "_");
 
+    //     var week = new Week({"id": teamId, "week_from": week_from});
+    //     week.toJSON();
 
-        console.log($teamId.val());
-        console.log($week_from.val());
+    //     week.save({}, {
+    //         success:function(model, response) {
+    //             console.log('Successfully saved!');
+    //             //app.navigate("/results", true);
+    //         },
+    //         error: function(model, error) {
+    //             console.log(error.responseText);
+    //         }
+    //     });
 
-        var week = new Week({"id": teamId, "week_from": week_from});
-        week.toJSON();
+    //     //return true;
 
-        week.save({}, {
-            wait:true,
-            success:function(model, response) {
-                console.log('Successfully saved!');
-                app.navigate("/results", true);
-            },
-            error: function(model, error) {
-                console.log(error.responseText);
-            }
-        });
-
-        return true;
-
-    },
+    // },
 
     render: function () {
         var teams = this.model.models;
@@ -81,7 +76,8 @@ window.ResultsView = Backbone.View.extend({
     },
 
     events: {
-        "click .clickable"   : "add"
+        "click .clickable"   : "add",
+        "click .add"   : "addWeek"
     },
 
     add: function (event) {
@@ -95,10 +91,13 @@ window.ResultsView = Backbone.View.extend({
         console.log($parent.data("mongoid"));
         console.log($parent.data("weekfrom"));
 
+        var today = new Date();
+            today = utils.dateFormat(today, "DD/MM/YYYY");
+
         var score = new Score({"id":$parent.data("mongoid"), "week_from": $parent.data("weekfrom")});
         score.toJSON();
 
-        score.save({"user":"test", "date": "01/01/2001"}, {
+        score.save({"user":"test", "date": today}, {
             wait:true,
             success:function(model, response) {
                 if($target.hasClass("last")) {
@@ -113,10 +112,31 @@ window.ResultsView = Backbone.View.extend({
                 console.log(error.responseText);
             }
         });
+    },
 
+    addWeek: function (event) {
+         var $form = $(event.currentTarget).closest("form"),
+             $teamId = $form.find(".teamId"),
+             $week_from = $form.find(".week_from"),
+             teamId = $teamId.val(),
+             week_from = $week_from.val().replace(/\//g, "_");
 
+        var week = new Week({"id": teamId, "week_from": week_from});
+        week.toJSON();
 
-        //this.addPoint(event);
+        week.save({}, {
+            success:function(model, response) {
+                console.log('Successfully saved!');
+                utils.showAlert('Success!', 'Week saved successfully', 'alert-success');
+                //app.navigate("/results", true);
+            },
+            error: function(model, error) {
+                console.log(error.responseText);
+            }
+        });
+
+        return false;
+
     }
 
 });

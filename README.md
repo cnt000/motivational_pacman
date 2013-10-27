@@ -27,6 +27,12 @@ Team(s) -> Score(s)
 
 ===================
 
+Come cominciare
+
+https://github.com/cnt000/motivational_pacman/wiki/Come-cominciare
+
+===================
+
 resources:
 
 tutorial:

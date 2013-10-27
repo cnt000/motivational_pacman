@@ -5,3 +5,15 @@
 .jumbotron li {
 	list-style-type: none;
 }
+.jumbotron {
+	font-size:120%;
+}
+.insWeekText {
+	font-weight: bold;
+}
+.addWeekButton {
+	display: inline-block;
+}
+.addWeekForm {
+	margin:20px;
+}

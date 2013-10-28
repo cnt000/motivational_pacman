@@ -9,7 +9,7 @@ var AppRouter = Backbone.Router.extend({
         "weeks/add"      : "weekAdd",
 
         "results"       : "results",
-        "results/:teamName"       : "resultsFiltered",
+        "results/:teamName(/:week_from)"       : "resultsFiltered",
         "about"         : "about"
     },
 
@@ -30,16 +30,22 @@ var AppRouter = Backbone.Router.extend({
         var teamsList = new TeamsCollection();
         teamsList.fetch({success: function(){
             $("#content").html(new ResultsPageView({model: teamsList, page: p}).el);
+            utils.addDatePicker(".week_from");
         }});
         this.headerView.selectMenuItem('results-menu');
     },
 
-    resultsFiltered: function (teamName) {
-        var teamsList = new TeamsCollection({
-            "teamName": teamName
-        });
+    resultsFiltered: function (teamName, week_from) {
+        var options = {};
+        
+        options.teamName = teamName;
+        options.week_from = week_from;
+
+        var teamsList = new TeamsCollection(options);
+
         teamsList.fetch({success: function(){
             $("#content").html(new ResultsPageView({model: teamsList}).el);
+            utils.addDatePicker(".week_from");
         }});
         this.headerView.selectMenuItem('results-menu');
     },

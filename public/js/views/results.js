@@ -4,34 +4,6 @@ window.ResultsPageView = Backbone.View.extend({
         this.render();
     },
 
-    // events: {
-    //     "click .add"   : "addWeek"
-    // },
-
-    // addWeek: function (event) {
-    //      var $form = $(event.currentTarget).closest("form"),
-    //          $teamId = $form.find(".teamId"),
-    //          $week_from = $form.find(".week_from"),
-    //          teamId = $teamId.val(),
-    //          week_from = $week_from.val().replace(/\//g, "_");
-
-    //     var week = new Week({"id": teamId, "week_from": week_from});
-    //     week.toJSON();
-
-    //     week.save({}, {
-    //         success:function(model, response) {
-    //             console.log('Successfully saved!');
-    //             //app.navigate("/results", true);
-    //         },
-    //         error: function(model, error) {
-    //             console.log(error.responseText);
-    //         }
-    //     });
-
-    //     //return true;
-
-    // },
-
     render: function () {
         var teams = this.model.models;
         var len = teams.length;
@@ -39,7 +11,6 @@ window.ResultsPageView = Backbone.View.extend({
         // var endPos = Math.min(startPos + 8, len);
 
         $(this.el).html('<h1>Results - <a href="#results">All</a></h1><div class="content"></div>');
-
 
         if(teams.length === 0) {
             $('.content', this.el).append('<div class="jumbotron">\
@@ -127,7 +98,7 @@ window.ResultsView = Backbone.View.extend({
         week.save({}, {
             success:function(model, response) {
                 console.log('Successfully saved!');
-                utils.showAlert('Success!', 'Week saved successfully', 'alert-success');
+                utils.showWeekAlert('Success!', 'Week saved successfully', "alert-success", teamId);
                 //app.navigate("/results", true);
             },
             error: function(model, error) {

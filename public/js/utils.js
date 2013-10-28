@@ -46,6 +46,13 @@ window.utils = {
         $('.alert').show();
     },
 
+    showWeekAlert: function(title, text, klass, id) {
+        $('.'+id).removeClass("alert-error alert-warning alert-success alert-info");
+        $('.'+id).addClass(klass);
+        $('.'+id).html('<strong>' + title + '</strong> ' + text);
+        $('.'+id).show();
+    },
+
     hideAlert: function() {
         $('.alert').hide();
     },
@@ -70,6 +77,13 @@ window.utils = {
         format = format.replace("MM", (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1)); // Months are zero-based
         format = format.replace("YYYY", date.getFullYear());
         return format;
+    },
+
+    addDatePicker: function (element) {
+        $(element).datepicker({ 
+                            format: "dd/mm/yyyy",
+                            weekStart: 1
+                        });
     }
 
 };

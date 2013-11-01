@@ -62,6 +62,7 @@ var AppRouter = Backbone.Router.extend({
         var team = new Team();
         $('#content').html(new TeamView({model: team}).el);
         this.headerView.selectMenuItem('teamsAdd');
+        utils.addDatePicker("#insDate");
     },
 
     teamDetails: function (id) {

@@ -111,7 +111,11 @@ exports.deleteTeam = function(req, res) {
 exports.pushScore = function(req, res) {
     var id = req.params.id;
     var week_from = req.params.week_from.replace(/_/g,"/");
-    var inserted = req.body;
+    var payload = req.body;
+    var inserted = {};
+
+    inserted.user = payload.user;
+    inserted.date = payload.date;
 
     db.collection('teams', function(err, collection) {
         collection.update({

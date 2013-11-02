@@ -29,6 +29,7 @@ var AppRouter = Backbone.Router.extend({
         var p = page ? parseInt(page, 10) : 1;
         var teamsList = new TeamsCollection();
         teamsList.fetch({success: function(){
+
             $("#content").html(new ResultsPageView({model: teamsList, page: p}).el);
             utils.addDatePicker(".week_from");
         }});

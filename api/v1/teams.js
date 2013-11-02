@@ -75,7 +75,7 @@ exports.addTeam = function(req, res) {
 exports.updateTeam = function(req, res) {
     var id = req.params.id;
     var team = req.body;
-    //delete team._id;
+    delete team._id;
     console.log('Updating team: ' + id);
     db.collection('teams', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, team, {safe:true}, function(err, result) {

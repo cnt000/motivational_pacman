@@ -51,10 +51,6 @@ exports.findByName = function(req, res) {
     });
 };
 
-// exports.getResults = function(req, res) {
-
-// };
-
 //=======CRUD team==========================
 
 exports.addTeam = function(req, res) {
@@ -102,66 +98,6 @@ exports.deleteTeam = function(req, res) {
                 res.send(req.body);
             }
         });
-    });
-};
-
-//=======push score==========================
-
-
-exports.pushScore = function(req, res) {
-    var id = req.params.id;
-    var week_from = req.params.week_from.replace(/_/g,"/");
-    var payload = req.body;
-    var inserted = {};
-
-    inserted.user = payload.user;
-    inserted.date = payload.date;
-
-    db.collection('teams', function(err, collection) {
-        collection.update({
-                            "_id": new BSON.ObjectID(id), 
-                            "scores.week_from": week_from
-                         },
-                         { $inc: { "scores.$.points": 1 }, $push: { "scores.$.inserted": inserted } },
-                         {safe:true}, function(err, result) {
-                                        if (err) {
-                                            console.log('Error updating team: ' + err);
-                                            res.send({'error':'An error has occurred'});
-                                        } else {
-                                            console.log('' + result + ' document(s) updated');
-                                            res.send(inserted);
-                                        }
-                        });
-
-    });
-};
-
-//=======push week==========================
-
-exports.pushWeek = function(req, res) {
-    var id = req.params.id;
-    var week_from = req.params.week_from.replace(/_/g,"/");
-    var week = {
-        "inserted": [],
-        "points": 0,
-        "week_from": week_from
-    };
-
-    db.collection('teams', function(err, collection) {
-        collection.update({
-                            "_id": new BSON.ObjectID(id)
-                         },
-                         { $push: { "scores": week } },
-                         {safe:true}, function(err, result) {
-                                        if (err) {
-                                            console.log('Error updating team: ' + err);
-                                            res.send({'error':'An error has occurred'});
-                                        } else {
-                                            console.log('' + result + ' document(s) updated');
-                                            res.send(week);
-                                        }
-                        });
-
     });
 };
 

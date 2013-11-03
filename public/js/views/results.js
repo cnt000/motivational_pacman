@@ -9,8 +9,8 @@ window.ResultsPageView = Backbone.View.extend({
         var teams = this.model.models;
         var len = teams.length;
         var page = this.options.page || 1;
-        var startPos = (page - 1) * 3;
-        var endPos = Math.min(startPos + 3, len);
+        var startPos = (page - 1) * utils.limitPerPage;
+        var endPos = Math.min(startPos + utils.limitPerPage, len);
 
 
         if(teams.length === 0) {
@@ -27,8 +27,9 @@ window.ResultsPageView = Backbone.View.extend({
         for (var i = startPos; i < endPos; i++) {
             $('.content', this.el).append(new ResultsView({model: teams[i]}).render().el);
         }
-
-        $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+        if(len>3) {
+            $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+        }
 
         return this;
     }

@@ -1,5 +1,7 @@
 window.utils = {
 
+    limitPerPage: 3,
+
     // Asynchronously load templates located in separate .html files
     loadTemplate: function(views, callback) {
 

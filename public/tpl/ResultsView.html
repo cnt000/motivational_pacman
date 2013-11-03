@@ -35,7 +35,7 @@
         <div class="jumbotron">
             <div><a href="#results/name/<%= name %>"><%= name %></a> <%= insDate %></div>
             <div class="stars" id="id_<%= _id %>_<%= score.week_from.replace(/\//g,"_") %>" data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
-                <p>from <%= score.week_from %></p><p> Week Points: <span class="points"><%= score.points %></span></p>
+                <p>week from <a href="#results/name/<%= name %>/week/<%= score.week_from %>"><%= score.week_from %></a></p><p> Week Points: <span class="points"><%= score.points %></span></p>
                 <% for(var i=0;i<score.points;i++) { %>
                 <span class="glyphicon glyphicon-star"></span>
 

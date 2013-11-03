@@ -12,7 +12,7 @@ window.Paginator = Backbone.View.extend({
 
         var items = this.model.models;
         var len = items.length;
-        var pageCount = Math.ceil(len / 3);
+        var pageCount = Math.ceil(len / utils.limitPerPage);
 
         $(this.el).html('<ul class="pagination" />');
 

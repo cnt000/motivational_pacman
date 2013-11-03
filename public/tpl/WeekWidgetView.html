@@ -1,0 +1,35 @@
+<div id="container">
+    <div class="row-fluid">
+
+        <form class="form-horizontal span12 addWeekForm" class="newWeek">
+            <div class="row">
+                <div class="span8">
+                    <div class="control-group">
+                        <div class="insWeekText">Inserisci settimana per team <%= name %></div>
+                        <select id="teamId">
+                    <%  for(var i=0;i<this.options.names.length;i++) { %>
+                            <option value="<%= this.options.ids[i] %>"><%=  this.options.names[i] %></option>
+                    <%  } %>
+                        </select>
+                        <label for="week_from" class="control-label">Week:</label>
+
+                        <input type="text" class="week_from" name="week_from" />
+
+                        <span class="help-inline"></span>
+                        <div class="form-actions addWeekButton">
+                            <a href="#" class="btn btn-primary add">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row-fluid status-bar">
+        <div class="span12">
+            <div class="alert alert-success" style="display: none">
+                <b>Success!</b> Week saved successfully
+            </div>
+        </div>
+    </div>
+
+</div>

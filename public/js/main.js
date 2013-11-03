@@ -8,9 +8,11 @@ var AppRouter = Backbone.Router.extend({
 
         "weeks/add"      : "weekAdd",
 
-        "results"       : "results",
-        "results/:teamName(/:week_from)"       : "resultsFiltered",
-        "about"         : "about"
+        "results(/p:page)"       : "results",
+        "results/name/:teamName(/week/*week_from)"       : "resultsFiltered",
+        "about"         : "about",
+        "*other"    : "home"
+
     },
 
     initialize: function () {
@@ -37,6 +39,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     resultsFiltered: function (teamName, week_from) {
+        var p = 1;
         var options = {};
         
         options.teamName = teamName;
@@ -45,7 +48,7 @@ var AppRouter = Backbone.Router.extend({
         var teamsList = new TeamsCollection(options);
 
         teamsList.fetch({success: function(){
-            $("#content").html(new ResultsPageView({model: teamsList}).el);
+            $("#content").html(new ResultsPageView({model: teamsList, page: p}).el);
             utils.addDatePicker(".week_from");
         }});
         this.headerView.selectMenuItem('results-menu');
@@ -71,7 +74,8 @@ var AppRouter = Backbone.Router.extend({
         team.fetch({success: function(){
             $("#content").html(new TeamView({model: team}).el);
         }});
-        this.headerView.selectMenuItem('teams-menu');
+        //this.headerView.selectMenuItem('teams-menu');
+        utils.addDatePicker("#insDate");
     },
 
     teamList: function () {
@@ -88,7 +92,7 @@ var AppRouter = Backbone.Router.extend({
 
 utils.loadTemplate(['HomeView', 'HeaderView', 
                     'AboutView', 'TeamView',
-                    'ResultsView']
+                    'ResultsView', 'WeekWidgetView']
                     , function() {
                                     app = new AppRouter();
                                     Backbone.history.start();

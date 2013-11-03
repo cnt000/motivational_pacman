@@ -1,29 +1,34 @@
 window.ResultsPageView = Backbone.View.extend({
 
-    initialize: function () {
+    initialize: function (options) {
+        this.options = options;
         this.render();
     },
 
     render: function () {
         var teams = this.model.models;
         var len = teams.length;
-        // var startPos = (this.options.page - 1) * 8;
-        // var endPos = Math.min(startPos + 8, len);
+        var page = this.options.page || 1;
+        var startPos = (page - 1) * 3;
+        var endPos = Math.min(startPos + 3, len);
 
-        $(this.el).html('<h1>Results - <a href="#results">All</a></h1><div class="content"></div>');
 
         if(teams.length === 0) {
-            $('.content', this.el).append('<div class="jumbotron">\
-                                    <div>Nessun team inserito</div>\
-                                </div>');
-             
+           $(this.el).html('\
+                                        <div class="jumbotron">\
+                                            <div>Nessun team inserito</div>\
+                                            <a href="#teams/add">Aggiungi team</a></div>\
+                                        </div>');
+        } else {
+            $(this.el).html('<h1>Results - <a href="#results">All</a></h1><div class="content"></div>');
+            $(this.el).prepend(new WeekWidgetView({model: this.model, ids: this.model.pluck("_id"), names: this.model.pluck("name")}).render().el);
         }
 
-        for (var i = 0; i < len; i++) {
+        for (var i = startPos; i < endPos; i++) {
             $('.content', this.el).append(new ResultsView({model: teams[i]}).render().el);
         }
 
-        // $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+        $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
 
         return this;
     }
@@ -58,9 +63,6 @@ window.ResultsView = Backbone.View.extend({
 
 
         $points.text(+$points.text()+1);
-
-        console.log($parent.data("mongoid"));
-        console.log($parent.data("weekfrom"));
 
         var today = new Date();
             today = utils.dateFormat(today, "DD/MM/YYYY");

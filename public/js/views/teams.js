@@ -11,6 +11,7 @@ window.TeamView = Backbone.View.extend({
 
     events: {
         "change"        : "change",
+        "blur #insDate"        : "change",
         "click .save"   : "beforeSave",
         "click .delete" : "deleteTeam"
     },

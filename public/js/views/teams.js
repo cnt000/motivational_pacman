@@ -89,12 +89,12 @@ window.TeamListView = Backbone.View.extend({
         var items = [];
         _.each(this.collection.models, function(model) {
             team = model.toJSON();
-            items.push('<li><a href="#teams/' + team._id + '">' + team.name + '</a></li>');
+            items.push('<li><a href="#teams/' + team._id + '">' + team.name + '<span class="badge pull-right">'+team.scores.length+' w</span></a></li>');
         });
 
-        $('<ul/>', {
+        $('<ul />', {
             html: items.join('')
-        }).appendTo(this.el);
+        }).addClass('nav nav-pills nav-stacked').appendTo(this.el);
         this.trigger('render');
     }
 

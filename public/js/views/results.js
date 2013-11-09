@@ -54,7 +54,16 @@ window.ResultsView = Backbone.View.extend({
 
     events: {
         "click .clickable"   : "add",
-        "click .add"   : "addWeek"
+        "click .add"   : "addWeek",
+        "click .filterweek" : "filterweek"
+    },
+
+    filterweek: function (e) {
+        var $target = $(e.currentTarget);
+        $('.jumbotron, .newWeekContainer').fadeOut();
+        $('[data-wf="'+$target.text()+'"]').fadeIn(500);
+        $('[data-wf="'+$target.text()+'"]').parent().parent().find(".newWeekContainer").fadeIn();
+        return false;
     },
 
     add: function (event) {

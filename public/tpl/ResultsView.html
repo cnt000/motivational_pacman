@@ -1,5 +1,5 @@
-<div id="container">
-    <div class="row-fluid">
+<div id="container" class="teamContainer">
+    <div class="row-fluid newWeekContainer">
 
         <form class="form-horizontal span12 addWeekForm" class="newWeek">
             <div class="row">
@@ -29,13 +29,13 @@
     </div>
 
     <% 
-    _.each(scores, function(score){ 
+    _.each(scores, function(score){
         %>
 
-        <div class="jumbotron">
+        <div class="jumbotron" data-wf="<%= score.week_from %>">
             <div><a href="#results/name/<%= name %>"><%= name %></a> <%= insDate %></div>
             <div class="stars" id="id_<%= _id %>_<%= score.week_from.replace(/\//g,"_") %>" data-mongoid="<%= _id %>" data-weekfrom="<%= score.week_from.replace(/\//g,"_") %>">
-                <p>week from <a href="#results/name/<%= name %>/week/<%= score.week_from %>"><%= score.week_from %></a></p><p> Week Points: <span class="points"><%= score.points %></span></p>
+                <p>week from <a class="filterweek"><%= score.week_from %></a></p><p> Week Points: <span class="points"><%= score.points %></span></p>
                 <% for(var i=0;i<score.points;i++) { %>
                 <span class="glyphicon glyphicon-star"></span>
 

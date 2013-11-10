@@ -8,8 +8,7 @@ var AppRouter = Backbone.Router.extend({
 
         "weeks/add"      : "weekAdd",
 
-        "results(/p:page)"       : "results",
-        "results/name/:teamName(/week/*week_from)(/p:page)"       : "resultsFiltered",
+        "results(/name/:teamName)(/p:page)"       : "results",
         "about"         : "about",
         "*other"    : "home"
 
@@ -33,22 +32,6 @@ var AppRouter = Backbone.Router.extend({
         teamsList.fetch({success: function(){
 
             $("#content").html(new ResultsPageView({model: teamsList, page: p}).el);
-            utils.addDatePicker(".week_from");
-        }});
-        this.headerView.selectMenuItem('results-menu');
-    },
-
-    resultsFiltered: function (teamName, week_from, page) {
-        var p = page ? parseInt(page, 10) : 1;
-        var options = {};
-        
-        options.teamName = teamName;
-        options.week_from = week_from;
-
-        var teamsList = new TeamsCollection(options);
-
-        teamsList.fetch({success: function(){
-            $("#content").html(new ResultsPageView({model: teamsList, page: p, week_from: week_from }).el);
             utils.addDatePicker(".week_from");
         }});
         this.headerView.selectMenuItem('results-menu');
